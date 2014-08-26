@@ -18,7 +18,7 @@ public class CSV {
 
 		ArrayList<Thing> result = new ArrayList<>();
 		CSVFormat format = CSVFormat.RFC4180.withHeader().withDelimiter(',');
-		
+
 		try (CSVParser parser = new CSVParser(new FileReader(filename), format)) {
 
 			for (CSVRecord record : parser) {
@@ -37,8 +37,9 @@ public class CSV {
 						.get("Commercial Positions-Short (All)"));
 
 				t.getReports()
-						.add(new Report(openInterest,
-								nonCommercialPositionsLong,
+						.add(new Report(record
+								.get("As of Date in Form YYYY-MM-DD"),
+								openInterest, nonCommercialPositionsLong,
 								nonCommercialPositionShort,
 								commercialPositionLong, commercialPositionShort));
 				result.add(t);
