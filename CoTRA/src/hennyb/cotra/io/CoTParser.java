@@ -2,7 +2,6 @@ package hennyb.cotra.io;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Iterator;
 import java.util.List;
 
 import hennyb.cotra.*;
