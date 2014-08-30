@@ -1,2 +1,1 @@
-# CoTRA
-## CoT Report Analyzer
+# CoTRA the CoT Report Analyzer

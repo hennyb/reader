@@ -1,12 +1,10 @@
 package hennyb.cotra;
 
-import hennyb.cotra.csv.CoTCSVHeader;
-import hennyb.cotra.csv.CoTCSVParser;
+import hennyb.cotra.io.csv.CoTCSVParser;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * 
@@ -21,16 +19,15 @@ public class CoTRA {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
-		CoTCSVParser parser = new CoTCSVParser(new FileReader(TEST_CSV_FILE));
+//		for (CoTReport report: CoTCSVParser.DEFAULT.parse(new FileReader(TEST_CSV_FILE))) {
+//			
+//			System.out.println(report.getMarketAndExchangeNames());
+//			
+//		}
+//		
 		
-		for (Map<CoTCSVHeader,String> report: parser) {
-			
-			System.out.println(report.get(CoTCSVHeader.ChangeInOpenInterestAll));
-			CoTReport cot = new CoTReport();
-			cot.fromCSVHeaderMap(report);
-			System.out.println(cot);
-			
-		}
+		Object x = "123";
+		System.out.println(x);
 		
 	}
 

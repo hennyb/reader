@@ -1,5 +1,12 @@
-package hennyb.cotra.csv;
+package hennyb.cotra.io.csv;
 
+/**
+ * 
+ * Collection of CSV headers as Enum
+ * 
+ * @author maxmeffert
+ *
+ */
 public enum CoTCSVHeader {
 
 	MarketAndExchangeNames("Market and Exchange Names"),
