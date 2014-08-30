@@ -19,15 +19,12 @@ public class CoTRA {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
-//		for (CoTReport report: CoTCSVParser.DEFAULT.parse(new FileReader(TEST_CSV_FILE))) {
-//			
-//			System.out.println(report.getMarketAndExchangeNames());
-//			
-//		}
-//		
-		
-		Object x = "123";
-		System.out.println(x);
+		for (CoTReport report: CoTCSVParser.DEFAULT.parse(new FileReader(TEST_CSV_FILE))) {
+			
+			System.out.println(report.getMarketAndExchangeNames());
+			
+		}
+
 		
 	}
 
