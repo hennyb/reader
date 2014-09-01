@@ -22,9 +22,7 @@ public class CoTMatrix {
 		this.matrix = new Object[this.size * EXPANSION_FACTOR][DEFAULT_COLCOUNT];
 		
 		for (int i=0; i < this.size; i++) {
-			
 			this.matrix[i] = old[i];
-			
 		}
 		
 	}
