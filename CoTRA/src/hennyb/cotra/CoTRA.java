@@ -25,12 +25,13 @@ public class CoTRA {
 			
 		}
 		
-		Object[][] xs = new Object[3][3];
+		ObjectTable table = new ObjectTable(5);
+		Object[] row = {1,2};
+		table.addRow(row);
+		Object[] row1 = {1,null,4,null,6,7};
+		table.addRow(row1);
 		
-		Object[] x = {1,2};
-		xs[0] = x;
-		
-		System.out.println(xs[0][2]);
+		System.out.println(table);
 
 		
 	}
