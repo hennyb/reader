@@ -12,7 +12,8 @@ foreach ($headers as $header) {
 	
 	
 	//echo "this.set$key(Double.parseDouble(map.get(CoTCSVHeader.$key)));\n";
-	echo "HEADERS.put(CoTField.$key,$header);\n";
+	//echo "HEADERS.put(CoTField.$key,$header);\n";
+	echo "$key double,\n";
 }
 
 ?>
