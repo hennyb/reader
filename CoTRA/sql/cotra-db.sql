@@ -7,13 +7,13 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 DROP TABLE IF EXISTS `cotreports`;
 CREATE TABLE `cotreports` (
-  `MarketAndExchangeNames` STRING DEFAULT NULL,
-  `AsOfDateInFormYYMMDD` STRING DEFAULT NULL,
+  `MarketAndExchangeNames` VARCHAR (50) NULL,
+  `AsOfDateInFormYYMMDD` VARCHAR (50) NULL,
   `AsOfDateInFormYYYYMMDD` double DEFAULT NULL,
-  `CFTCContractMarketCode` STRING DEFAULT NULL,
-  `CFTCMarketCodeInInitials` STRING DEFAULT NULL,
-  `CFTCRegionCode` STRING DEFAULT NULL,
-  `CFTCCommodityCode` STRING DEFAULT NULL,
+  `CFTCContractMarketCode` VARCHAR (50) NULL,
+  `CFTCMarketCodeInInitials` VARCHAR (50) NULL,
+  `CFTCRegionCode` VARCHAR (50) NULL,
+  `CFTCCommodityCode` VARCHAR (50) NULL,
   `OpenInterestAll` double DEFAULT NULL,
   `NoncommercialPositionsLongAll` double DEFAULT NULL,
   `NoncommercialPositionsShortAll` double DEFAULT NULL,
@@ -132,10 +132,11 @@ CREATE TABLE `cotreports` (
   `ConcentrationNetLT4TDRShortOther` double DEFAULT NULL,
   `ConcentrationNetLT8TDRLongOther` double DEFAULT NULL,
   `ConcentrationNetLT8TDRShortOther` double DEFAULT NULL,
-  `ContractUnits` STRING DEFAULT NULL,
+  `ContractUnits` VARCHAR (50) NULL,
   `CFTCContractMarketCodeQuotes` double DEFAULT NULL,
   `CFTCMarketCodeInInitialsQuotes` double DEFAULT NULL,
   `CFTCCommodityCodeQuotes` double DEFAULT NULL
+
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
