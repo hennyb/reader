@@ -132,10 +132,7 @@ CREATE TABLE `cotreports` (
   `ConcentrationNetLT4TDRShortOther` double DEFAULT NULL,
   `ConcentrationNetLT8TDRLongOther` double DEFAULT NULL,
   `ConcentrationNetLT8TDRShortOther` double DEFAULT NULL,
-  `ContractUnits` VARCHAR (50) NULL,
-  `CFTCContractMarketCodeQuotes` double DEFAULT NULL,
-  `CFTCMarketCodeInInitialsQuotes` double DEFAULT NULL,
-  `CFTCCommodityCodeQuotes` double DEFAULT NULL
+  `ContractUnits` VARCHAR (50) NULL
 
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
