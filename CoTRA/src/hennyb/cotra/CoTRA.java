@@ -30,7 +30,7 @@ public class CoTRA {
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException {
 
-		SqlConnection sqlC=null;
+		SqlConnection sqlC = null;
 
 		try {
 			sqlC = new SqlConnection();
@@ -41,32 +41,59 @@ public class CoTRA {
 		}
 
 		CoTReaderExcel excel = new CoTReaderExcel();
-		excel.setWorkbookFromFile("data/Com95_03.xls");
-
-		File file = new File("data/sqlTypes.txt");
-		ArrayList<String> lines = (ArrayList<String>) FileUtils.readLines(file,
-				"UTF-8");
+		excel.setWorkbookFromFile("data/Com04_13.xls");
 
 		int i = 0;
-		for (Cell cell : excel.getSheet().getRow(4)) {
-			String line = lines.get(i);
-			switch (cell.getCellType()) {
-			case Cell.CELL_TYPE_STRING:
-				lines.set(i, line.replace(" double DEFAULT ", " VARCHAR (50) "));
-				break;
-			case Cell.CELL_TYPE_NUMERIC:
-				break;
-			default:
-				System.err.println("keins von beiden");
-				break;
+		for (Row row : excel.getSheet()) {
+
+			// System.out.println(excel.getInsertIntoFromRow(row));
+			if (i++ != 0) {
+				System.out.println(excel.getInsertIntoFromRow(row));
+				try {
+					sqlC.insertIntoSQL(excel.getInsertIntoFromRow(row));
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.exit(1);
+				}
 			}
 
-			i++;
 		}
 
-		for (String line : lines) {
-			System.out.println(line);
-		}
+		// File file = new File("data/sqlTypes.txt");
+		// ArrayList<String> lines = (ArrayList<String>)
+		// FileUtils.readLines(file,
+		// "UTF-8");
+
+		// ArrayList<String> lines = new ArrayList<>();
+		//
+		// int i = 0;
+		// for (Cell cell : excel.getSheet().getRow(4)) {
+		//
+		// // gets the cell with the names in it
+		// Cell nameCell = excel.getSheet().getRow(0).getCell(i);
+		//
+		// StringBuilder sb = new StringBuilder();
+		// sb.append("`" + nameCell.getStringCellValue() + "` ");
+		//
+		// switch (cell.getCellType()) {
+		// case Cell.CELL_TYPE_STRING:
+		// sb.append(" VARCHAR (100) DEFAULT NULL ,");
+		// break;
+		// case Cell.CELL_TYPE_NUMERIC:
+		// sb.append(" double DEFAULT NULL,");
+		// break;
+		// default:
+		// System.err.println("keins von beiden");
+		// break;
+		// }
+		// lines.add(sb.toString());
+		//
+		// i++;
+		// }
+		//
+		// for (String line : lines) {
+		// System.out.println(line);
+		// }
 
 		//
 		// int i = 0;

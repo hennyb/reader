@@ -22,7 +22,7 @@ public class CoTReaderExcel {
 	public void setWorkbookFromFile(String path) {
 		try {
 			this.wb = WorkbookFactory.create(new File(path));
-			
+
 		} catch (InvalidFormatException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,35 +36,51 @@ public class CoTReaderExcel {
 	public void setWb(Workbook wb) {
 		this.wb = wb;
 	}
-	
-	public Sheet getSheet(){
+
+	public Sheet getSheet() {
 		return this.wb.getSheetAt(0);
 	}
-	
-	public String getInsertIntoFromRow(Row row){
-		
+
+	public String getInsertIntoFromRow(Row row) {
+
 		StringBuilder sb = new StringBuilder();
 		sb.append("INSERT INTO cotreports VALUES (");
-		
-		for(Cell cell :row){
-			boolean lastCell = row.getLastCellNum() == cell.getColumnIndex();
-			switch (cell.getCellType()) {
-			case Cell.CELL_TYPE_STRING:
-				sb
-				break;
-			case Cell.CELL_TYPE_NUMERIC:
-				
-				break;
-			default:
-				System.err.println("keins von beiden");
-				break;
+
+		for (int i = 0; i < row.getLastCellNum(); i++) {
+
+			Cell cell = row.getCell(i);
+
+			if (cell == null) {
+				sb.append(0);
+			} else {
+
+				switch (cell.getCellType()) {
+				case Cell.CELL_TYPE_STRING:
+					String cellStringContent = cell.getStringCellValue();
+					sb.append("\"");
+					sb.append(cellStringContent.equals("") ? " "
+							: cellStringContent);
+					sb.append("\"");
+
+					break;
+				case Cell.CELL_TYPE_NUMERIC:
+					double cellDoubleContent = cell.getNumericCellValue();
+					sb.append(cellDoubleContent);
+					break;
+				default:
+					System.err.println("keins von beiden");
+					break;
+				}
+			}
+			boolean lastCell = row.getLastCellNum()-1 == i;
+			if (!lastCell) {
+				sb.append(" , ");
 			}
 			
-			
 		}
-		
+
 		sb.append(")");
-		return(sb.toString());
+		return (sb.toString());
 	}
 
 }

@@ -33,16 +33,9 @@ public class SqlConnection {
 
 	}
 
-	public void insertIntoSQL(String insertInto) {
-
-		try {
+	public void insertIntoSQL(String insertInto) throws Exception {
 			// statement.executeUpdate("INSERT INTO cotreports (MarketAndExchangeNames) VALUES (1.3)");
 			statement.executeUpdate(insertInto);
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 }
