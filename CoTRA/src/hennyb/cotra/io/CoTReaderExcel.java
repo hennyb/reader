@@ -1,7 +1,11 @@
 package hennyb.cotra.io;
 
+import hennyb.cotra.sql.SqlConnection;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -68,19 +72,74 @@ public class CoTReaderExcel {
 					sb.append(cellDoubleContent);
 					break;
 				default:
-					System.err.println("keins von beiden");
+					System.err.println("invalid excel-file");
+					System.exit(1);
 					break;
 				}
 			}
-			boolean lastCell = row.getLastCellNum()-1 == i;
+			boolean lastCell = row.getLastCellNum() - 1 == i;
 			if (!lastCell) {
 				sb.append(" , ");
 			}
-			
+
 		}
 
 		sb.append(")");
 		return (sb.toString());
+	}
+
+	public boolean insertAllRowsToSQL(SqlConnection sqlC) {
+
+		for (int i = 1; i < this.getSheet().getLastRowNum(); i++) {
+
+			Row row = this.getSheet().getRow(i);
+			try {
+				sqlC.insertIntoSQL(this.getInsertIntoFromRow(row));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+
+		}
+		return true;
+	}
+
+	public List<String> createTableCommands() {
+
+		ArrayList<String> lines = new ArrayList<>();
+
+		int i = 0;
+		for (Cell cell : this.getSheet().getRow(4)) {
+
+			// gets the cell with the names in it
+			Cell nameCell = this.getSheet().getRow(0).getCell(i);
+
+			StringBuilder sb = new StringBuilder();
+			sb.append("`" + nameCell.getStringCellValue() + "` ");
+
+			switch (cell.getCellType()) {
+			case Cell.CELL_TYPE_STRING:
+				sb.append(" VARCHAR (100) DEFAULT NULL ,");
+				break;
+			case Cell.CELL_TYPE_NUMERIC:
+				sb.append(" double DEFAULT NULL,");
+				break;
+			default:
+				System.err.println("keins von beiden");
+				break;
+			}
+			lines.add(sb.toString());
+
+			i++;
+		}
+
+		for (String line : lines) {
+			System.out.println(line);
+		}
+
+		return lines;
+
 	}
 
 }
